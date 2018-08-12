@@ -196,8 +196,8 @@ module.exports = function(router) {
             rest.putJson(url, payload, options).on('success', handleSuccess).on('fail', handleError);
             break;
           case 'delete':
-            options.query = req.params;
-            rest.del(url, options).on('success', handleSuccess).on('fail', handleError);
+            //options.query = req.params;
+            rest.del(url, payload,options).on('success', handleSuccess).on('fail', handleError);
             break;
           default:
             return handleError(`Could not match request method: ${req.method.toLowerCase()}`);
