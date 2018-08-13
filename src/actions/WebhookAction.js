@@ -3,7 +3,6 @@
 const rest = require('restler');
 const _ = require('lodash');
 const FormioUtils = require('formiojs/utils');
-
 module.exports = function(router) {
   const Action = router.formio.Action;
   const hook = router.formio.hook;
@@ -196,8 +195,10 @@ module.exports = function(router) {
             rest.putJson(url, payload, options).on('success', handleSuccess).on('fail', handleError);
             break;
           case 'delete':
-            //options.query = req.params;
-            rest.del(url, payload,options).on('success', handleSuccess).on('fail', handleError);
+            //options.query += ("&"+req.params); // Object.assign(req.params,options.query) ;
+            //rest.del(url, options).on('success', handleSuccess).on('fail', handleError);
+
+            rest.putJson(url, payload,options).on('success', handleSuccess).on('fail', handleError);
             break;
           default:
             return handleError(`Could not match request method: ${req.method.toLowerCase()}`);
